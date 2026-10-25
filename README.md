@@ -1,4 +1,3 @@
-# Online-shopping-database-
 # Online Shopping Database System
 
 ## 1. Project Overview
