@@ -71,6 +71,60 @@ INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
 (3, 4, 2,  35000.00),
 (3, 5, 1,  18000.00),
 (4, 6, 2,  12000.00),
+    
+-- 3b. VERIFICATION OF INITIAL DATA
+SELECT 'customers' AS table_name, COUNT(*) AS total_rows FROM customers
+UNION ALL SELECT 'products',    COUNT(*) FROM products
+UNION ALL SELECT 'orders',      COUNT(*) FROM orders
+UNION ALL SELECT 'order_items', COUNT(*) FROM order_items;
+
+SELECT * FROM customers;
+SELECT * FROM products;
+SELECT * FROM orders;
+SELECT * FROM order_items;
+
+SELECT o.order_id, c.full_name, o.status
+FROM orders o
+JOIN customers c ON c.customer_id = o.customer_id;
+
+
+-- 4. SELECT TASKS
+-- Q1.1 Basic retrieval: product catalogue
+SELECT product_name, category, price
+FROM products;
+
+-- Q1.2 Conditional retrieval: customers living in Kigali
+SELECT full_name, email, city
+FROM customers
+WHERE city = 'Kigali';
+
+-- Q1.3 Sorted retrieval: products from most to least expensive
+SELECT product_name, price
+FROM products
+ORDER BY price DESC;
+
+
+-- 5. JOIN TASKS
+-- Q2.1 INNER JOIN: orders with the customer who placed them
+SELECT o.order_id, c.full_name, o.order_date, o.status, o.total_amount
+FROM orders o
+INNER JOIN customers c ON c.customer_id = o.customer_id
+ORDER BY o.order_id;
+
+-- Q2.2 LEFT JOIN: all customers, with their orders where they exist
+SELECT c.customer_id, c.full_name, o.order_id, o.status
+FROM customers c
+LEFT JOIN orders o ON o.customer_id = c.customer_id
+ORDER BY c.customer_id, o.order_id;
+
+-- Q2.3 Multi-table JOIN: full order report
+SELECT c.full_name, o.order_id, p.product_name,
+       oi.quantity, oi.unit_price, oi.quantity * oi.unit_price AS line_total
+FROM customers c
+JOIN orders o       ON o.customer_id = c.customer_id
+JOIN order_items oi ON oi.order_id   = o.order_id
+JOIN products p     ON p.product_id  = oi.product_id
+ORDER BY o.order_id, p.product_name;
 (5, 3, 1,  45000.00),
 (5, 5, 1,  18000.00),
 (6, 2, 1, 280000.00);
