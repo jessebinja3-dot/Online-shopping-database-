@@ -84,10 +84,14 @@ The ERD was generated from the actual database by the DBMS application.
 ## 7. Tools Used
 
 * **PostgreSQL**: relational database management system.
-* **pgAdmin 4**: for running SQL and generating the ERD.
+* **Vs code**: for writing and running SQL queries.
 * **GitHub**: for version control and project submission.
 
-## 8. Author
+## 8. Conclusion
+
+Through this assignment, I learned how to create a relational database and its tables in PostgreSQL, choosing suitable data types and constraints such as NOT NULL, UNIQUE, and CHECK to protect the data. I learned that a primary key uniquely identifies each record, and that a foreign key links a child table to an existing parent table, which keeps the data consistent and prevents records that refer to nothing. I practised inserting data into parent tables before child tables, and retrieving it with SELECT using conditions and sorting. I learned how JOIN operations combine related records: an INNER JOIN returns only matching rows, a LEFT JOIN keeps every row from the first table, and a multi-table JOIN produces a complete report from several tables. I also learned that an UPDATE must always have a precise WHERE condition so that only the intended records change, and that every change must be verified afterwards. Finally, I learned that ALTER TABLE changes the structure of a table rather than the data inside it, and that renaming a column or changing a data type must be done carefully so that existing data and relationships are not damaged
+
+## 9. Author
 
 **Name:** Jesse BINJA
 **Student ID:** 202512173
